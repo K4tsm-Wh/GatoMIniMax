@@ -62,6 +62,36 @@ char verificarGanador(){
 
     return ' ';}
 
+ int evaluarLinea(char a, char b, char c) {
+
+            int puntos = 0;
+
+            if (a == 'O' && b == 'O' && c == 'O') {
+                puntos = 100;}
+            else if ((a == 'O' && b == 'O' && c == ' ') || (a == 'O' && c == 'O' && b == ' ') || (b == 'O' && c == 'O' && a == ' ')) {
+                puntos = 10;}
+            else if ((a == 'O' && b == ' ' && c == ' ') || (b == 'O' && a == ' ' && c == ' ') ||(c == 'O' && a == ' ' && b == ' ')) {
+                puntos = 1;}
+            else if ((a == 'X' && b == 'X' && c == ' ') || (a == 'X' && c == 'X' && b == ' ') ||(b == 'X' && c == 'X' && a == ' ')) {
+                puntos = -20;}
+
+            return puntos;}
+
+        int revisarPuntaje() {
+
+            int puntaje = 0;
+
+            for (int i = 0; i < 3; i++){
+                puntaje += evaluarLinea(tablero[i][0], tablero[i][1], tablero[i][2]);}
+
+            for (int j = 0; j < 3; j++){
+                puntaje += evaluarLinea(tablero[0][j], tablero[1][j], tablero[2][j]);}
+
+            puntaje += evaluarLinea(tablero[0][0], tablero[1][1], tablero[2][2]);
+            puntaje += evaluarLinea(tablero[0][2], tablero[1][1], tablero[2][0]);
+
+            return puntaje;}
+
 main()
 {
     Gato gato;
