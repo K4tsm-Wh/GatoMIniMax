@@ -1,6 +1,7 @@
 #include "GatoPoda.h"
 #include <vector>
 #include <algorithm>
+#include <chrono>
 
 
 GatoPoda::GatoPoda()
@@ -185,6 +186,9 @@ int GatoPoda::minimax(int profundidad, bool esMaximizar, int alpha, int beta)
 
 void GatoPoda::jugarIA()
 {
+     using namespace std::chrono; 
+     auto inicio = high_resolution_clock::now();
+    
      int mejorPuntaje = -99999;
         int fila = -1, col = -1;
 
@@ -211,6 +215,9 @@ void GatoPoda::jugarIA()
         {
             mover(fila, col);
         }
+    auto fin = high_resolution_clock::now();
+    auto duracion = duration_cast<microseconds>(fin - inicio);
+    cout << "Tiempo IA: " << duracion.count() << " microsegundos" << endl;
 }
 
 char GatoPoda::getJugadorActual()
