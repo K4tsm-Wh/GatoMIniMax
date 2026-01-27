@@ -1,6 +1,7 @@
 #include "Gato.h"
 #include <vector>
 #include <algorithm>
+#include <chrono>
 
 
 Gato::Gato()
@@ -172,6 +173,9 @@ int Gato::minimax(int profundidad, bool esMaximizar)
 
 void Gato::jugarIA()
 {
+     using namespace std::chrono; 
+     auto inicio = high_resolution_clock::now();
+    
      int mejorPuntaje = -99999;
         int fila = -1, col = -1;
 
@@ -198,6 +202,9 @@ void Gato::jugarIA()
         {
             mover(fila, col);
         }
+    auto fin = high_resolution_clock::now();
+    auto duracion = duration_cast<microseconds>(fin - inicio);
+    cout << "Tiempo IA: " << duracion.count() << " microsegundos" << endl;
 }
 
 char Gato::getJugadorActual()
